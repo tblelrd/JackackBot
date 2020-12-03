@@ -64,7 +64,7 @@ Bot.on("message", async msg =>{
                     
 
                     Bot.users.fetch(messageReciever).then((user) => {
-                        user.send(messageContent);
+                        user.send(`${msg.author.username}#${msg.author.discriminator}:${messageContent}`);
                         msg.channel.send(`${user.username}#${user.discriminator} has been sent the following message: ${messageContent}`)
                     });
                     
