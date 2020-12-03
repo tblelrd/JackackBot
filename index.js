@@ -61,11 +61,14 @@ Bot.on("message", async msg =>{
                     
 
                     
-                    const textee = Bot.users.cache.get(messageReciever)
-                    console.log(textee)
+                    const textee = Bot.users.cache.get(messageReciever).then(
+                    console.log(textee),
 
-                    msg.channel.send(`${textee.username}#${textee.discriminator} has been sent the following messege: ${messageContent}`)
+                    msg.channel.send(`${textee.username}#${textee.discriminator} has been sent the following messege: ${messageContent}`),
                     textee.send(`${msg.author.username}#${msg.author.discriminator}: ${messageContent}`)
+                    
+                    )
+
                 });
             });
             
