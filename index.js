@@ -11,13 +11,14 @@ Bot.login(process.env.token);
 
 
 Bot.on("guildCreate", member =>{
+    const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
     const ThankYouEmbed = new Discord.MessageEmbed()
         .setColor('#fc00ff')
         .setTitle('Thanks for inviting me to ur server!')
         .setThumbnail(member.guild.iconURL())
         .setImage(member.guild.me.user.avatarURL())
         
-    guild.channels.find(`name`, `general`).send(ThankYouEmbed)
+    channel.send(ThankYouEmbed)
     
 })
 
@@ -77,7 +78,6 @@ Bot.on("message", async msg =>{
 
     console.log (`${msg.author.username}#${msg.author.discriminator} said \"${msg.content}\"`)
 
-    console.log(msg.author)
 
     if(msg.content == "j!ping") {
         return msg.reply("Pong!")
