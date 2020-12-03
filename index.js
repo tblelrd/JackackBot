@@ -61,7 +61,7 @@ Bot.on("message", async msg =>{
                     
 
                     
-                    textee = Bot.users.cache.get(messageReciever)
+                    textee = Bot.users.fetch(messageReciever)
                     console.log(textee)
                     console.log(Bot.users.cache.get(messageReciever))
 
