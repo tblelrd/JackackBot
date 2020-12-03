@@ -48,7 +48,9 @@ Bot.on("message", async msg =>{
                 console.log(`Collected ${collected.size} items`);
                 
                 
-                msg.channel.send("What do you wana text")
+
+                
+                msg.channel.send("What do you wana text" + Bot.users.fetch(messageReciever).then((user)=> {user.username}))
                 const collector2 = msg.channel.createMessageCollector(filter, { max: 1, time: 30000 });
                 
                 collector2.on('collect', m2 => {
