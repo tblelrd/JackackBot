@@ -60,13 +60,11 @@ Bot.on("message", async msg =>{
                     console.log(`Collected ${collected2.size} items`);
                     
 
-                    client.fetchUser(messageReciever, false).then((user) => {
-                        user.send(messageContent);
-                       });
-
-
+                    
+                    textee = Bot.users.cache.get(messageReciever)
 
                     msg.channel.send(`${textee.username}#${textee.discriminator} has been sent the following messege: ${messageContent}`)
+                    textee.send(`${msg.author.username}#${msg.author.discriminator}: ${messageContent}`)
                 });
             });
             
