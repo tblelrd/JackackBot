@@ -1,15 +1,27 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const Bot = new Discord.Client();
 
 const Avatar = "https://cdn.discordapp.com/avatars/784050441247916032/526f8f0d44f418782bedc76a9250f27e.webp"
 
-client.once('ready', () => {
+Bot.once('ready', () => {
     console.log('Bot Online');
 });
 
-client.login(process.env.token);
+Bot.login(process.env.token);
 
-client.on("message", async msg =>{
+
+Bot.on("guildCreate", member =>{
+    const ThankYouEmbed = new Discord.MessageEmbed()
+        .setColor('#fc00ff')
+        .setTitle('Thanks for inviting me to ur server!')
+        .setThumbnail(member.guild.iconURL())
+        .setImage(member.guild.me.user.avatarURL())
+        
+    guild.channels.find(`name`, `general`).send(ThankYouEmbed)
+    
+})
+
+Bot.on("message", async msg =>{
 
 
     if(msg.author.bot) {
