@@ -63,6 +63,7 @@ Bot.on("message", async msg =>{
                     
                     textee = Bot.users.cache.get(messageReciever)
                     console.log(textee)
+                    console.log(Bot.users.cache.get(messageReciever))
 
                     msg.channel.send(`${textee.username}#${textee.discriminator} has been sent the following messege: ${messageContent}`)
                     textee.send(`${msg.author.username}#${msg.author.discriminator}: ${messageContent}`)
