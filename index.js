@@ -7,7 +7,7 @@ client.once('ready', () => {
     console.log('Bot Online');
 });
 
-client.login(token);
+client.login(process.env.token);
 
 client.on("message", async msg =>{
 
