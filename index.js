@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
 const Avatar = "https://cdn.discordapp.com/avatars/784050441247916032/526f8f0d44f418782bedc76a9250f27e.webp"
+const PREFIX = "j!"
+
 
 Bot.once('ready', () => {
     console.log('Bot Online');
@@ -24,11 +26,13 @@ Bot.on("guildCreate", member =>{
 
 Bot.on("message", async msg =>{
 
-
+    //CHECKS IF MESSAGE AUTHOR IS A BOT
     if(msg.author.bot) {
         return console.log(`${msg.author.username}#${msg.author.discriminator} said \"${msg.content}\"`)
     }
 
+
+    //TEXT COMMAND
     if(msg.channel.type == "dm") {
         if(msg.content == "j!text") {
             var messageContent
@@ -78,17 +82,8 @@ Bot.on("message", async msg =>{
         return 
     }
 
-
+    //SAY COMMAND
     nick = msg.guild.member(msg.author).displayName
-
-
-    console.log (`${msg.author.username}#${msg.author.discriminator} said \"${msg.content}\"`)
-
-
-    if(msg.content == "j!ping") {
-        return msg.reply("Pong!")
-    }
-
     if(msg.content.includes('j!say')) {
         let say = msg.content.replace('j!say', '')
         msg.guild.me.setNickname(nick).then(
@@ -96,11 +91,27 @@ Bot.on("message", async msg =>{
             msg.channel.send(say)
         )
         
-        msg.guild.me.setNickname("(j!) " + msg.guild.me.user.username)
-    }   
-    if(msg.content == "j!startdm") {
-        msg.author.send("Hi!")
+        msg.guild.me.setNickname(PREFIX+ " " + msg.guild.me.user.username)
     }
 
+    //LOGS
+    console.log (`${msg.author.username}#${msg.author.discriminator} said \"${msg.content}\"`)
+
+
+    // COMMANDS
+
+    if(!msg.content.substring(PREFIX.length) == PREFIX){
+       return
+    } 
+    let args = msg.content.toLowerCase().substring(PREFIX.length).split(" ");
+
+    switch(args[0]) {
+        case "ping":
+            msg.reply("Pong!")
+        break;
+        
+        case "startdm":
+            msg.author.send("Hi!")
     
+    }
 });
