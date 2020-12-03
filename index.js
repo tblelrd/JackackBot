@@ -60,7 +60,6 @@ Bot.on("message", async msg =>{
                     console.log(`Collected ${collected2.size} items`);
                     
 
-                    console.log(client.users.cache.get(messageReciever))
                     textee = client.users.cache.get(messageReciever)
 
                     msg.channel.send(`${textee.username}#${textee.discriminator} has been sent the following messege: ${messageContent}`)
