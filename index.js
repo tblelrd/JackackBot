@@ -70,7 +70,11 @@ Bot.on("message", async msg =>{
                     
 
                     Bot.users.fetch(messageReciever).then((user) => {
-                        user.send(`${msg.author.username}#${msg.author.discriminator}(${msg.author.id}): ${messageContent}`);
+                        
+                        const embed= new Discord.MessageEmbed(title=`${msg.author.username}#${msg.author.discriminator}(${msg.author.id}): ${messageContent}`, description="Sent via the jackack message service", color=0xff00ae)
+                        
+                        
+                        user.send(embed);
                         msg.channel.send(`${user.username}#${user.discriminator} has been sent the following message: ${messageContent}`)
                     });
                     
