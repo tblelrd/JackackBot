@@ -11,7 +11,7 @@ Bot.login(process.env.token);
 
 
 Bot.on("guildCreate", member =>{
-    const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+    const channel = member.guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
     const ThankYouEmbed = new Discord.MessageEmbed()
         .setColor('#fc00ff')
         .setTitle('Thanks for inviting me to ur server!')
