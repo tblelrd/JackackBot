@@ -91,7 +91,7 @@ Bot.on("message", async msg =>{
             msg.channel.send(say)
         )
         
-        msg.guild.me.setNickname(PREFIX+ " " + msg.guild.me.user.username)
+        msg.guild.me.setNickname("("+PREFIX+ ") " + msg.guild.me.user.username)
     }
 
     //LOGS
