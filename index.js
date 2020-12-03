@@ -7,7 +7,7 @@ client.once('ready', () => {
     console.log('Bot Online');
 });
 
-client.login('Nzg0MDUwNDQxMjQ3OTE2MDMy.X8jp4A.JnsLV1MLuQMoENNCO38Qcj-hX54');
+client.login(token);
 
 client.on("message", async msg =>{
 
