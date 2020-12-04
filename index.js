@@ -78,7 +78,8 @@ Bot.on("message", async msg =>{
                     Bot.users.fetch(messageReciever).then((user) => {
                         
                         const text= new Discord.MessageEmbed()
-                            .setTitle(`${msg.author.username}#${msg.author.discriminator}(${msg.author.id}): ${messageContent}`)
+                            .setTitle(`${messageContent}`)
+                            .setDescription(`${msg.author.username}#${msg.author.discriminator}(${msg.author.id})`)
                             .setFooter("Sent via the jackack message service") 
                             .setColor("#FF00C8")
                             .setImage(msg.author.displayAvatarURL())
