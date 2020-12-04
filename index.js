@@ -79,8 +79,9 @@ Bot.on("message", async msg =>{
                         
                         const text= new Discord.MessageEmbed()
                             .setTitle(`${msg.author.username}#${msg.author.discriminator}(${msg.author.id}): ${messageContent}`)
-                            .setDescription("Sent via the jackack message service") 
+                            .setFooter("Sent via the jackack message service") 
                             .setColor("#FF00C8")
+                            .setImage(msg.author.displayAvatarURL())
                         
                         user.send(text);
                         msg.channel.send(`${user.username}#${user.discriminator} has been sent the following message: ${messageContent}`)
