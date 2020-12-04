@@ -8,7 +8,7 @@ const PREFIX = "j!"
 //THINGS THAT HAPPEN WHEN BOT ONLINE
 Bot.once('ready', () => {
     console.log('Bot Online');
-    bot.user.setActivity('j!help',{
+    Bot.user.setActivity('j!help',{
         type: "WATCHING"
     }).catch(console.error);
 });
