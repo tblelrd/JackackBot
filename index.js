@@ -115,9 +115,8 @@ Bot.on('message', async msg => {
 
 
     // COMMANDS
-
-    if (!msg.content.substring(prefix.length) == prefix) return;
-    const args = msg.content.toLowerCase().substring(prefix.length).split(' ');
+    if (!msg.content.startsWith(prefix) || msg.author.bot) return;
+    const args = msg.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
 
     switch (args[0]) {
         case 'ping':
