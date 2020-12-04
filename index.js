@@ -152,7 +152,7 @@ Bot.on("message", async msg =>{
             const meee = await msg.reply('If it didnt work its becuz ur not in a server')
             const me = new Discord.MessageEmbed()
             .setTitle('User Information')
-            .addField('Name:', msg.author.username, true)
+            .addField('Name:', (await msg.guild.members.fetch(msg.author.id)).nickname, true)
             .addField('Server:', msg.guild.name,true)
             .addField('Member Count', msg.guild.memberCount,true)
             .addField('Role In The Sever', msg.member.roles.highest.name,true)
