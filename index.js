@@ -2,9 +2,7 @@
 const Discord = require('discord.js');
 const Bot = new Discord.Client();
 
-const {
-    prefix,
-} = require('./config.json');
+let prefix = 'j!';
 
 
 // THINGS THAT HAPPEN WHEN BOT ONLINE
