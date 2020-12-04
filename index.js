@@ -82,7 +82,7 @@ Bot.on("message", async msg =>{
                             .setDescription(`${msg.author.username}#${msg.author.discriminator}(${msg.author.id})`)
                             .setFooter("Sent via the jackack message service") 
                             .setColor("#FF00C8")
-                            .setImage(msg.author.displayAvatarURL())
+                            .setThumbnail(msg.author.displayAvatarURL())
                         
                         user.send(text);
                         msg.channel.send(`${user.username}#${user.discriminator} has been sent the following message: ${messageContent}`)
