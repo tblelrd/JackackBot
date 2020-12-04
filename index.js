@@ -141,6 +141,7 @@ Bot.on('message', async msg => {
                 .setColor('#FF00C8')
                 .addField('Help', 'Displays this help screen', true)
                 .addField('Ping', 'Pong!', true)
+                .addField('Prefix', 'Sets the GLOBAL prefix', true)
                 .addField('StartDM', 'Essential for texting', true)
                 .addField('Say', 'Says your message as you', true)
                 .addField('Text', 'Only works in DMs also type the command as standalone so it works', true)
