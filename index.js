@@ -177,8 +177,10 @@ Bot.on('message', async msg => {
             }
             break;
 
-        case 'test':
-
+        case 'prefix':
+            // eslint-disable-next-line no-const-assign
+            prefix = args[1];
+            msg.guild.me.setNickname('(' + prefix + ') ' + msg.guild.me.user.username);
             break;
     }
 });
