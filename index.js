@@ -32,7 +32,12 @@ Bot.on('guildCreate', member => {
 });
 
 async function nh(name, msg) {
+    const cactus = await MC.uuidForName('793884e374e142f3879613386f969e77');
+
+    if(name == cactus) return;
+
     const nameHistory = await MC.nameHistoryForName(name);
+
 
     let i;
 
@@ -201,7 +206,6 @@ Bot.on('message', async msg => {
                 msg.channel.send('You need to put a minecraft username!');
                 return;
             }
-            if(args[1] == await MC.uuidForName('793884e374e142f3879613386f969e77')) return msg.channel.send('HAHAHAHAHAHAH YOU  TRIED');
 
             nh(args[1], msg);
             break;
