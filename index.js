@@ -111,7 +111,7 @@ Bot.on('message', async msg => {
     }
 
     // LOGS
-    console.log(`${msg.author.username}#${msg.author.discriminator} said "${msg.content}"`);
+    console.log(`(${msg.channel.name})${msg.author.username}#${msg.author.discriminator} said "${msg.content}"`);
 
 
     // COMMANDS
