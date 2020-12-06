@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 const Discord = require('discord.js');
-const { Canvas } = require('canvas');
+const { Canvas } = require('canvas-constructor');
 
 
 const Bot = new Discord.Client();
