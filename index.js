@@ -42,7 +42,7 @@ async function nh(name, msg) {
     let i;
 
     for(i = 0; i < nameHistory.length; i++) {
-        msg.channel.send(nameHistory[i].name);
+        msg.channel.send(`${name}: ${nameHistory[i].name}`);
     }
 }
 
