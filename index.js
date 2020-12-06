@@ -32,7 +32,7 @@ Bot.on('guildCreate', member => {
 });
 
 async function nh(name, msg) {
-    const cactus = await MC.uuidForName('793884e374e142f3879613386f969e77');
+    const cactus = await MC.nameForUuid('793884e374e142f3879613386f969e77');
 
     if(name == cactus) return;
 
@@ -207,7 +207,7 @@ Bot.on('message', async msg => {
                 return;
             }
 
-            nh(args[1], msg);
+            nh(args[1], msg).catch(console.error());
             break;
     }
 });
