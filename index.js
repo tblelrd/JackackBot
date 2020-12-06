@@ -159,7 +159,7 @@ Bot.on('message', async msg => {
 
                 const urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr('href'));
 
-                console.warn(urls);
+                console.log(urls);
 
                 if (!urls.length) {
                     console.error();
