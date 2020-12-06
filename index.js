@@ -34,7 +34,7 @@ Bot.on('guildCreate', member => {
 async function nh(name, msg) {
     const cactus = await MC.nameForUuid('793884e374e142f3879613386f969e77');
 
-    if(name == cactus) return;
+    if(name == cactus) return msg.channel.send('AHAHAHAHAHAHA YOU TRIEDDDDDDDDDD');
 
     const nameHistory = await MC.nameHistoryForName(name);
 
