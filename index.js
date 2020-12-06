@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
 const Discord = require('discord.js');
-const { Canvas } = require('canvas-constructor');
 
 
 const Bot = new Discord.Client();
@@ -135,15 +134,6 @@ Bot.on('message', async msg => {
             break;
 
         case 'canvas':
-            const canvas1 = new Canvas(300, 300)
-            .setColor('#FC00FF')
-            .printRectangle(5, 5, 290, 290)
-            .setColor('0FFF00')
-            .setTextFont('28x Impact')
-            .printText('Hello World', 130, 150)
-            .toBuffer();
-
-            msg.send(canvas1);
             break;
 
         case 'help':
