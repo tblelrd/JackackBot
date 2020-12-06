@@ -33,7 +33,7 @@ Bot.on('message', async msg => {
 
     // CHECKS IF MESSAGE AUTHOR IS A BOT
     if (msg.author.bot) {
-        return console.log(`${msg.author.username}#${msg.author.discriminator} said "${msg.content}"`);
+        return console.log(`(${msg.channel.name})${msg.author.username}#${msg.author.discriminator} said "${msg.content}"`);
     }
 
 
