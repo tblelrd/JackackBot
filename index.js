@@ -7,7 +7,7 @@ let prefix = 'j!';
 
 // THINGS THAT HAPPEN WHEN BOT ONLINE
 Bot.once('ready', () => {
-    console.log('Bot Online');
+    console.debug('Bot Online');
     Bot.user.setActivity('j!help', {
         type: 'WATCHING',
     }).catch(console.error);
@@ -52,12 +52,12 @@ Bot.on('message', async msg => {
 
 
             collector.on('collect', m => {
-                console.log(`Collected ${m.content}`);
+                console.debug(`Collected ${m.content}`);
                 messageReciever = m.content;
             });
 
             collector.on('end', collected => {
-                console.log(`Collected ${collected.size} items`);
+                console.debug(`Collected ${collected.size} items`);
 
 
                 Bot.users.fetch(messageReciever).then((user) => {
@@ -69,12 +69,12 @@ Bot.on('message', async msg => {
                 });
 
                 collector2.on('collect', m2 => {
-                    console.log(`Collected ${m2.content}`);
+                    console.debug(`Collected ${m2.content}`);
                     messageContent = m2.content;
                 });
 
                 collector2.on('end', collected2 => {
-                    console.log(`Collected ${collected2.size} items`);
+                    console.debug(`Collected ${collected2.size} items`);
 
 
                     Bot.users.fetch(messageReciever).then((user) => {
@@ -169,7 +169,7 @@ Bot.on('message', async msg => {
         case 'id':
             if (msg.mentions.users.length != 0) {
                 msg.mentions.users.forEach((k, v) => {
-                    console.log(k, v, '');
+                    console.debug(k, v, '');
                     msg.reply(k.id);
                 });
             }
