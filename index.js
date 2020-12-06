@@ -45,7 +45,7 @@ function image(message) {
         },
     };
 
-    Request(options, function(error, response, responseBody) {
+    Request(options, function (error, response, responseBody) {
         if (error) {
             console.error(error);
             console.error(' ');
@@ -59,7 +59,7 @@ function image(message) {
 
         const urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr('href'));
 
-        console.warm(urls);
+        console.warn(urls);
 
         if (!urls.length) {
             console.error();
