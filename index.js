@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 const Discord = require('discord.js');
-
+const MC = require('minecraft-api');
 
 const Bot = new Discord.Client();
 
@@ -31,6 +31,15 @@ Bot.on('guildCreate', member => {
 
 });
 
+async function nh(name, msg) {
+    const nameHistory = await MC.nameHistoryForName(name);
+
+    let i;
+
+    for(i = 0; i < nameHistory.length; i++) {
+        msg.channel.send(nameHistory[i]);
+    }
+}
 
 Bot.on('message', async msg => {
 
@@ -185,6 +194,14 @@ Bot.on('message', async msg => {
             // eslint-disable-next-line no-const-assign
             prefix = args[1];
             msg.guild.me.setNickname('(' + prefix + ') ' + msg.guild.me.user.username);
+            break;
+        case 'namehistory':
+            if(!args[1]) {
+                msg.channel.send('You need to put a minecraft username!');
+                return;
+            }
+
+            nh(args[1], msg);
             break;
     }
 });
