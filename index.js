@@ -163,7 +163,7 @@ Bot.on('message', async msg => {
                 .addField('Say', 'Says your message as you', true)
                 .addField('Text', 'Only works in DMs also type the command as standalone so it works', true)
                 .addField('Me', 'Displays info about you in a server', true)
-                .addField('NameHistory', 'Displays the Minecradt name history of a provided username')
+                .addField('NameHistory', 'Displays the Minecradt name history of a provided username', true)
                 .setThumbnail(msg.guild.iconURL())
                 .setTimestamp()
                 .setFooter('Bot created at Dec 2nd, 2020', msg.guild.me.user.avatarURL());
