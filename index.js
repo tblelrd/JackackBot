@@ -47,6 +47,9 @@ function image(message) {
 
     Request(options, function(error, response, responseBody) {
         if (error) {
+            console.error(error);
+            console.error(' ');
+            console.error();
             return;
         }
 
@@ -59,6 +62,7 @@ function image(message) {
         console.warm(urls);
 
         if (!urls.length) {
+            console.error();
             return;
         }
 
