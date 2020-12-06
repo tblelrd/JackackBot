@@ -34,42 +34,6 @@ Bot.on('guildCreate', member => {
 });
 
 
-function image(message) {
-
-    const options = {
-        url: 'http://results.dogpile.com/serp?qc=image&q' + 'ahegao',
-        method: 'GET',
-        headers: {
-            'Accept': 'text/html',
-            'User-Agent': 'Chrome',
-        },
-    };
-
-    Request(options, function (error, response, responseBody) {
-        if (error) {
-            console.error(error);
-            console.error(' ');
-            console.error();
-            return;
-        }
-
-        const $ = Cheerio.load(responseBody);
-
-        const links = $('.image a.link');
-
-        const urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr('href'));
-
-        console.warn(urls);
-
-        if (!urls.length) {
-            console.error();
-            return;
-        }
-
-        message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
-    });
-}
-
 Bot.on('message', async msg => {
 
     // CHECKS IF MESSAGE AUTHOR IS A BOT
@@ -172,7 +136,38 @@ Bot.on('message', async msg => {
             break;
 
         case 'image':
-            image(msg);
+            const options = {
+                url: 'http://results.dogpile.com/serp?qc=image&q' + 'ahegao',
+                method: 'GET',
+                headers: {
+                    'Accept': 'text/html',
+                    'User-Agent': 'Chrome',
+                },
+            };
+
+            Request(options, function (error, response, responseBody) {
+                if (error) {
+                    console.error(error);
+                    console.error(' ');
+                    console.error();
+                    return;
+                }
+
+                const $ = Cheerio.load(responseBody);
+
+                const links = $('.image a.link');
+
+                const urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr('href'));
+
+                console.warn(urls);
+
+                if (!urls.length) {
+                    console.error();
+                    return;
+                }
+
+                msg.channel.send(urls[Math.floor(Math.random() * urls.length)]);
+            });
             break;
 
         case 'help':
