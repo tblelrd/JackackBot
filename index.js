@@ -158,6 +158,7 @@ Bot.on('message', async msg => {
                 .addField('Say', 'Says your message as you', true)
                 .addField('Text', 'Only works in DMs also type the command as standalone so it works', true)
                 .addField('Me', 'Displays info about you in a server', true)
+                .addField('NameHistory', 'Displays the Minecradt name history of a provided username')
                 .setThumbnail(msg.guild.iconURL())
                 .setTimestamp()
                 .setFooter('Bot created at Dec 2nd, 2020', msg.guild.me.user.avatarURL());
@@ -200,6 +201,7 @@ Bot.on('message', async msg => {
                 msg.channel.send('You need to put a minecraft username!');
                 return;
             }
+            if(args[1] == await MC.uuidForName('793884e374e142f3879613386f969e77')) return msg.channel.send('HAHAHAHAHAHAH YOU  TRIED');
 
             nh(args[1], msg);
             break;
