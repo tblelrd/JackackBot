@@ -1,5 +1,9 @@
 /* eslint-disable no-shadow */
 const Discord = require('discord.js');
+const Cheerio = require('cheerio');
+const Request = require('request');
+
+
 const Bot = new Discord.Client();
 
 let prefix = 'j!';
@@ -7,7 +11,7 @@ let prefix = 'j!';
 
 // THINGS THAT HAPPEN WHEN BOT ONLINE
 Bot.once('ready', () => {
-    console.debug('Bot Online');
+    console.warn('Bot Online');
     Bot.user.setActivity('j!help', {
         type: 'WATCHING',
     }).catch(console.error);
@@ -28,6 +32,39 @@ Bot.on('guildCreate', member => {
     channel.send(ThankYouEmbed);
 
 });
+
+
+function image(message) {
+
+    const options = {
+        url: 'http://results.dogpile.com/serp?qc=image&q' + 'ahegao',
+        method: 'GET',
+        headers: {
+            'Accept': 'text/html',
+            'User-Agent': 'Chrome',
+        },
+    };
+
+    Request(options, function(error, response, responseBody) {
+        if (error) {
+            return;
+        }
+
+        const $ = Cheerio.load(responseBody);
+
+        const links = $('.image a.link');
+
+        const urls = new Array(links.length).fill(0).map((v, i) => links.eq(i).attr('href'));
+
+        console.warm(urls);
+
+        if (!urls.length) {
+            return;
+        }
+
+        message.channel.send(urls[Math.floor(Math.random() * urls.length)]);
+    });
+}
 
 Bot.on('message', async msg => {
 
@@ -52,12 +89,12 @@ Bot.on('message', async msg => {
 
 
             collector.on('collect', m => {
-                console.debug(`Collected ${m.content}`);
+                console.warn(`Collected ${m.content}`);
                 messageReciever = m.content;
             });
 
             collector.on('end', collected => {
-                console.debug(`Collected ${collected.size} items`);
+                console.warn(`Collected ${collected.size} items`);
 
 
                 Bot.users.fetch(messageReciever).then((user) => {
@@ -69,12 +106,12 @@ Bot.on('message', async msg => {
                 });
 
                 collector2.on('collect', m2 => {
-                    console.debug(`Collected ${m2.content}`);
+                    console.warn(`Collected ${m2.content}`);
                     messageContent = m2.content;
                 });
 
                 collector2.on('end', collected2 => {
-                    console.debug(`Collected ${collected2.size} items`);
+                    console.warn(`Collected ${collected2.size} items`);
 
 
                     Bot.users.fetch(messageReciever).then((user) => {
@@ -130,6 +167,10 @@ Bot.on('message', async msg => {
             msg.author.send('Hi!');
             break;
 
+        case 'image':
+            image(msg);
+            break;
+
         case 'help':
             const help = new Discord.MessageEmbed()
                 .setTitle('Help')
@@ -169,7 +210,7 @@ Bot.on('message', async msg => {
         case 'id':
             if (msg.mentions.users.length != 0) {
                 msg.mentions.users.forEach((k, v) => {
-                    console.debug(k, v, '');
+                    console.warn(k, v, '');
                     msg.reply(k.id);
                 });
             }
