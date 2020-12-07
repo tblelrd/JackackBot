@@ -217,9 +217,10 @@ Bot.on('message', async msg => {
         case 'token':
             if (args[1]) return msg.channel.send('Why did u put something after the command lol');
             const randomToken = Math.floor(Math.random() * 10000);
+            const id = parseInt(msg.author.id);
             console.log(randomToken);
-            Config.passcodes[msg.author.id] = randomToken;
-            msg.author.send(`Your secret passcode is: ${toString(Config.passcodes[msg.author.id])}, ${msg.author}`);
+            Config.passcodes[id] = randomToken;
+            msg.author.send(`Your secret passcode is: ${toString(Config.passcodes[id])}, ${msg.author}`);
             break;
     }
 });
