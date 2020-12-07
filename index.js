@@ -49,7 +49,7 @@ async function nh(name, msg) {
 
 Bot.on('message', async msg => {
 
-    if(!Config.prefix[msg.guild.id]) {
+    if (!Config.prefix[msg.guild.id]) {
         Config.prefix[msg.guild.id] = 'j!';
     }
 
@@ -215,8 +215,8 @@ Bot.on('message', async msg => {
             break;
 
         case 'token':
-            if(args[1]) return msg.channel.send('Why did u put something after the command lol');
-            Config.passcode[msg.author.id] = Math.floor(Math.random() * 10000);
+            if (args[1]) return msg.channel.send('Why did u put something after the command lol');
+            Config.passcode[msg.author.id] = toString(Math.floor(Math.random() * 10000));
             msg.author.send(`Your secret passcode is: ${Config.passcodes[msg.author.id]}, ${msg.author}`);
             break;
     }
