@@ -49,6 +49,10 @@ async function nh(name, msg) {
 
 Bot.on('message', async msg => {
 
+    if(!Config.prefix[msg.guild.id]) {
+        Config.prefix[msg.guild.id] = 'j!';
+    }
+
     // CHECKS IF MESSAGE AUTHOR IS A BOT
     if (msg.author.bot) {
         return console.log(`(${msg.channel.name})${msg.author.username}#${msg.author.discriminator} said "${msg.content}"`);
