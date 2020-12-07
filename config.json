@@ -1,3 +1,4 @@
 {
-    "prefix": "j!"
+    "prefix": ["j!"],
+    "passcodes": [0]
 }

@@ -2,9 +2,9 @@
 const Discord = require('discord.js');
 const MC = require('minecraft-api');
 
-const Bot = new Discord.Client();
+const Config = require('./config.json');
 
-let prefix = 'j!';
+const Bot = new Discord.Client();
 
 
 // THINGS THAT HAPPEN WHEN BOT ONLINE
@@ -31,17 +31,18 @@ Bot.on('guildCreate', member => {
 
 });
 
+// NAME HISTORY COMMAND
 async function nh(name, msg) {
     const cactus = await MC.nameForUuid('793884e374e142f3879613386f969e77');
 
-    if(name == cactus) return msg.channel.send('AHAHAHAHAHAHA YOU TRIEDDDDDDDDDD');
+    if (name == cactus) return msg.channel.send('AHAHAHAHAHAHA YOU TRIEDDDDDDDDDD');
 
     const nameHistory = await MC.nameHistoryForName(name);
 
 
     let i;
 
-    for(i = 0; i < nameHistory.length; i++) {
+    for (i = 0; i < nameHistory.length; i++) {
         msg.channel.send(`${name}: ${nameHistory[i].name}`);
     }
 }
@@ -124,7 +125,7 @@ Bot.on('message', async msg => {
             msg.channel.send(say),
         );
 
-        msg.guild.me.setNickname('(' + prefix + ') ' + msg.guild.me.user.username);
+        msg.guild.me.setNickname('(' + Config.prefix[msg.guild.id] + ') ' + msg.guild.me.user.username);
     }
 
     // LOGS
@@ -132,8 +133,8 @@ Bot.on('message', async msg => {
 
 
     // COMMANDS
-    if (!msg.content.startsWith(prefix) || msg.author.bot) return;
-    const args = msg.content.toLowerCase().slice(prefix.length).trim().split(/ +/);
+    if (!msg.content.startsWith(Config.prefix[msg.guild.id]) || msg.author.bot) return;
+    const args = msg.content.toLowerCase().slice(Config.prefix[msg.guild.id].length).trim().split(/ +/);
 
     switch (args[0]) {
         case 'ping':
@@ -197,17 +198,22 @@ Bot.on('message', async msg => {
             break;
 
         case 'prefix':
-            // eslint-disable-next-line no-const-assign
-            prefix = args[1];
-            msg.guild.me.setNickname('(' + prefix + ') ' + msg.guild.me.user.username);
+            Config.prefix[msg.guild.id] = args[1];
+            msg.guild.me.setNickname('(' + Config.prefix[msg.guild.id] + ') ' + msg.guild.me.user.username);
             break;
         case 'namehistory':
-            if(!args[1]) {
+            if (!args[1]) {
                 msg.channel.send('You need to put a minecraft username!');
                 return;
             }
 
             nh(args[1], msg).catch(console.error());
+            break;
+
+        case 'token':
+            if(args[1]) return msg.channel.send('Why did u put something after the command lol');
+            Config.passcode[msg.author.id] = Math.floor(Math.random() * 10000);
+            msg.author.send(`Your secret passcode is: ${Config.passcodes[msg.author.id]}, ${msg.author}`);
             break;
     }
 });
