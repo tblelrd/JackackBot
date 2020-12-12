@@ -223,10 +223,10 @@ Bot.on('message', async msg => {
             const player = args[1];
 
             HClient.findGuildByPlayer(player, (err, guildId) => {
-                if(err) return msg.channel.send('lol theyre either not in a guild or they dont exist');
+                if(err) console.log(err);
 
                 HClient.getGuild(guildId, (err, guildInfo) => {
-                    if(err) return console.log(err);
+                    if(err) console.log(err);
 
                     let i;
 
