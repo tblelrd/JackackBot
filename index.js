@@ -222,23 +222,25 @@ Bot.on('message', async msg => {
             if(!args[1]) return msg.channel.send('ya gotta put the name of the guy who u wanna find the guild members of');
             const player = args[1];
 
-            HClient.findGuildByPlayer(player, (err, guildId) => {
-                if(err) console.log(err);
-
-                HClient.getGuild(guildId, (err, guildInfo) => {
+            HClient.getPlayerByUsername(player, (err, playerUuid) => {
+                HClient.findGuildByPlayer(playerUuid, (err, guildId) => {
                     if(err) console.log(err);
 
-                    let i;
+                    HClient.getGuild(guildId, (err, guildInfo) => {
+                        if(err) console.log(err);
 
-                    for(i = 0; i < guildInfo.members.length; i++) {
-                        const playerId = guildInfo.player[i];
+                        let i;
 
-                        HClient.getPlayer(playerId, (err, playerInfo) => {
-                            const name = playerInfo.playername;
+                        for(i = 0; i < guildInfo.members.length; i++) {
+                            const playerId = guildInfo.player[i];
 
-                            msg.channel.send(name);
-                        });
-                    }
+                            HClient.getPlayer(playerId, (err, playerInfo) => {
+                                const name = playerInfo.playername;
+
+                                msg.channel.send(name);
+                            });
+                        }
+                    });
                 });
             });
         break;
