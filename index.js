@@ -219,7 +219,7 @@ Bot.on('message', async msg => {
             break;
 
         case 'hgm':
-            if(args[1]) return msg.channel.send('ya gotta put the name of the guy who u wanna find the guild members of');
+            if(!args[1]) return msg.channel.send('ya gotta put the name of the guy who u wanna find the guild members of');
             const player = args[1];
 
             HClient.findGuildByPlayer(player, (err, guildId) => {
