@@ -1,9 +1,13 @@
 /* eslint-disable no-shadow */
 const Discord = require('discord.js');
 const MC = require('minecraft-api');
+const Hypixel = require('hypixel');
 
 const Config = require('./config.json');
 
+const HClient = new Hypixel({
+    key: '44e5f02a-c671-402f-87b5-6484994d4ce2',
+});
 const Bot = new Discord.Client();
 
 
@@ -214,13 +218,29 @@ Bot.on('message', async msg => {
             nh(args[1], msg).catch(console.error());
             break;
 
-        case 'token':
-            if (args[1]) return msg.channel.send('Why did u put something after the command lol');
-            const randomToken = Math.floor(Math.random() * 10000);
-            const id = parseInt(msg.author.id);
-            console.log(randomToken);
-            Config.passcodes[id] = randomToken;
-            msg.author.send(`Your secret passcode is: ${toString(Config.passcodes[id])}, ${msg.author}`);
-            break;
+        case 'hgm':
+            if(args[1]) return msg.channel.send('ya gotta put the name of the guy who u wanna find the guild members of');
+            const player = args[1];
+
+            HClient.findGuildByPlayer(player, (err, guildId) => {
+                if(err) return msg.channel.send('lol theyre either not in a guild or they dont exist');
+
+                HClient.getGuild(guildId, (err, guildInfo) => {
+                    if(err) return console.log(err);
+
+                    let i;
+
+                    for(i = 0; i < guildInfo.members.length; i++) {
+                        const playerId = guildInfo.player[i];
+
+                        HClient.getPlayer(playerId, (err, playerInfo) => {
+                            const name = playerInfo.playername;
+
+                            msg.channel.send(name);
+                        });
+                    }
+                });
+            });
+        break;
     }
 });
