@@ -10,12 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-colors": "^4.1.1",
     "canvas": "^2.6.1",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^12.5.1",
     "hypixel": "^1.0.3",
     "minecraft-api": "0.0.3",
+    "mongoose": "^5.11.13",
     "request": "^2.88.2",
-    "roblox": "0.0.6"
+    "roblox": "0.0.6",
+    "table": "^6.0.7"
   }
 }
