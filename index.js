@@ -12,6 +12,7 @@ bot.once('ready', () => {
 
     register.registerCommands(bot, 'commands');
     register.registerEvents(bot, 'events');
+		bot.startDate = Date.now();
 
     console.log(`Bot logged in as ${bot.user.username}`);
 });
