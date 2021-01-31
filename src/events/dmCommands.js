@@ -39,7 +39,7 @@ module.exports = {
                     collector2.on('end', collected2 => {
                         console.warn(`Collected ${collected2.size} items`);
 
-
+												
                         bot.users.fetch(messageReciever).then((user) => {
                             user.send(`\`\`\`nim\n${messageContent}\n\n -Sent by ${msg.author.username}#${msg.author.discriminator}\n -their id: ${msg.author.id}\`\`\``);
                             msg.channel.send(`${user.username}#${user.discriminator} has been sent the following message: ${messageContent}`);
