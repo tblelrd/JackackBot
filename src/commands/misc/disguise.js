@@ -4,7 +4,7 @@ module.exports = {
     minArgs: 2,
     callback: async (msg, args, text, bot) => {
         const guild = msg.guild.id;
-        const user = await msg.guild.users.fetch(args[0]);
+        const user = await bot.users.fetch(args[0]);
         if(!user) return msg.reply('They don exist');
         const member = guild.member(user);
         const name = member.nickname;
