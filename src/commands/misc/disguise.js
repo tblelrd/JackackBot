@@ -3,9 +3,9 @@ module.exports = {
     expectedArgs: '<userID> <tex>',
     minArgs: 2,
     callback: async (msg, args, text, bot) => {
-        const user = await bot.users.fetch(args[0]);
+        const user = await msg.guild.users.fetch(args[0]);
         if(!user) return msg.reply('They don exist');
-        const name = user.username;
+        const name = user.nickname;
         const avatar = user.avatarURL();
 
         await msg.delete();
