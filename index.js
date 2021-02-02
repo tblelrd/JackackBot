@@ -16,7 +16,9 @@ bot.once('ready', () => {
 
     console.log(`Bot logged in as ${bot.user.username}`);
 });
-
+bot.on('message', msg => {
+ // nothing
+});
 // bot.login(process.env.token);
 const Database = require('@replit/database');
 const db = new Database();

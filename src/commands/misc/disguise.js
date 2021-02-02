@@ -6,9 +6,8 @@ module.exports = {
         const guild = msg.guild;
         const user = await bot.users.fetch(args[0]);
         if(!user) return msg.reply('They don exist');
-        const member = await guild.member(user);
-        let name = member.nickname;
-        if (!name) name = user.username;
+        const member = guild.member.fetch(user);
+        const name = member.nickname || user.username;
         const avatar = user.avatarURL();
 
         await msg.delete();
