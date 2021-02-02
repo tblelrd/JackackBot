@@ -3,7 +3,7 @@ module.exports = {
     expectedArgs: '<userID> <tex>',
     minArgs: 2,
     callback: async (msg, args, text, bot) => {
-        const guild = bot.guilds.get(msg.guild.id).id;
+        const guild = msg.guild;
         const user = await bot.users.fetch(args[0]);
         if(!user) return msg.reply('They don exist');
         const member = guild.member(user);
