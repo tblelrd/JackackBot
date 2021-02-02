@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-
 module.exports = {
     commands: ['say', 'repeat'],
     expectedArgs: '<tex>',
