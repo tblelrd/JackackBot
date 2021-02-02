@@ -13,7 +13,7 @@ module.exports = {
         args.shift();
 
         const webhook = await msg.channel.createWebhook('SayHook', { reason: 'Say' });
-        await webhook.send(args.join(), { username: name, avatarURL: avatar });
+        await webhook.send(args.join(' '), { username: name, avatarURL: avatar });
 
         await webhook.delete();
     },
