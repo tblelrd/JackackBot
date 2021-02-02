@@ -19,6 +19,7 @@ bot.once('ready', () => {
 bot.on('message', msg => {
  // nothing
 });
+bot.setMaxListeners(0);
 // bot.login(process.env.token);
 const Database = require('@replit/database');
 const db = new Database();
